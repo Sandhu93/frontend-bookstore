@@ -1,0 +1,74 @@
+import { Fragment, memo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "store/configureStore";
+import useOnClickOutside from "utils/hooks/useOnClickOutside";
+import ProfileMenu from "../profile-menu";
+import styles from "./index.module.scss";
+
+function HelpMenu() {
+  const translateRef = useRef(null);
+  const { t, i18n } = useTranslation();
+
+  const [open, setOpen] = useState(false);
+  const { user } = useAppSelector((state) => state.account);
+
+  const language = [
+    { title: t("navbar.thai"), value: "th" },
+    { title: t("navbar.english"), value: "en" },
+  ];
+
+  const onChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setOpen(false);
+  };
+
+  useOnClickOutside(translateRef, () => {
+    if (open) setOpen(false);
+  });
+
+  return (
+    <div className={styles["help-menu-container"]}>
+      <ul className={styles["help-menu"]}>
+        <li className="relative" ref={translateRef}>
+          <p className="flex items-center gap-2 cursor-pointer" onClick={() => setOpen((state) => !state)}>
+            {t("navbar.language")} <i className="fa-solid fa-angle-down" />
+          </p>
+
+          {open && (
+            <div className={styles["translate-menu"]}>
+              {language.map((item, index) => (
+                <Fragment key={index}>
+                  <p
+                    className={`${i18n.language === item.value && styles.active}`}
+                    onClick={() => onChange(item.value)}
+                  >
+                    {item.title}
+                  </p>
+                  {index === 0 && <span />}
+                </Fragment>
+              ))}
+            </div>
+          )}
+        </li>
+        <li>|</li>
+
+        {!user ? (
+          <>
+            <li>
+              <Link to="/register">{t("navbar.register")}</Link>
+            </li>
+            <li>|</li>
+            <li>
+              <Link to="/login">{t("navbar.login")}</Link>
+            </li>
+          </>
+        ) : (
+          <ProfileMenu user={user} className="text-[#898989]" />
+        )}
+      </ul>
+    </div>
+  );
+}
+
+export default memo(HelpMenu);

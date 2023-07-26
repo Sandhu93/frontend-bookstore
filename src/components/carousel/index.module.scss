@@ -1,0 +1,93 @@
+@use "@/styles/main" as *;
+
+.carousel {
+  position: relative;
+}
+
+.arrow-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: #ffffff;
+  font-size: 26px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+  z-index: 1;
+  @include breakpoint(sm) {
+    display: flex;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.next-arrow {
+  right: 0;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.prev-arrow {
+  left: 0;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.dot {
+  position: absolute;
+  display: flex !important;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  @include breakpoint(md) {
+    bottom: 40px;
+  }
+
+  li {
+    width: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: #fff;
+    opacity: 1;
+    transition: width 0.4s ease-out;
+    @include breakpoint(sm) {
+      width: 8px;
+      height: 8px;
+      border-radius: 4px / 16px;
+    }
+  }
+
+  :global(li.slick-active) {
+    width: 18px;
+    background-color: $primary-color;
+    @include breakpoint(sm) {
+      width: 28px;
+    }
+  }
+
+  span {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.disable {
+  cursor: default;
+  background-color: rgba(165, 165, 165, 0.3);
+
+  &:hover {
+    background-color: rgba(165, 165, 165, 0.3);
+  }
+}
