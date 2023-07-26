@@ -1,0 +1,60 @@
+@use "@/styles/main" as *;
+
+.table {
+  width: 100%;
+  color: #2c2c2c;
+  border-spacing: 2px;
+  border-color: grey;
+
+  tr {
+    border-bottom: 1px solid #ececec;
+  }
+
+  td {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 12px 0.5rem;
+    vertical-align: middle;
+  }
+
+  a {
+    &:hover {
+      color: #000000;
+    }
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+.table tr td {
+  &:nth-child(1) {
+    padding: 0;
+    width: 2%;
+  }
+  &:nth-child(2) {
+    width: 8%;
+  }
+  &:nth-child(3) {
+    width: 35%;
+  }
+  &:nth-child(4) {
+    width: 20%;
+  }
+  &:nth-child(5) {
+    width: 5%;
+  }
+  &:nth-child(6) {
+    width: 20%;
+  }
+  &:nth-child(7) {
+    width: 10%;
+  }
+}

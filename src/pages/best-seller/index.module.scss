@@ -1,0 +1,19 @@
+@use "@/styles/main" as *;
+
+.container {
+  @include container();
+
+  h1 {
+    padding: 2rem 0;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    color: $primary-color;
+  }
+}
+
+.grid-container {
+  @include breakpoint(xss) {
+    grid-template-columns: 1fr;
+  }
+}

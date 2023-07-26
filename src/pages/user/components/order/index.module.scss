@@ -1,0 +1,19 @@
+@use "@/styles/main" as *;
+
+.order-item {
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid #eeeeee;
+
+  &__header {
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #eee;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+  }
+}
